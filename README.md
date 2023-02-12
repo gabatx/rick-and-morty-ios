@@ -1,4 +1,4 @@
-## rick-and-morty-ios
+## Rick and Morty con MVC puro
 Desarrollo con MVC Puro y KingFisher
 
 En este proyecto se ha implementado una arquitectura de MVC pura, donde se ha creado la vista mediante código. Se ha utilizado un coordinator para presentar las vistas de manera flexible, ya sea a través de un modal o del navigationController. 
