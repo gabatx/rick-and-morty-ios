@@ -1,0 +1,48 @@
+Fuente: https://www.youtube.com/watch?v=dPFrx0PxQTY
+
+Programar sin storyboard:
+
+ - Borramos el storyBoard
+ - Nos vamos info.plist y borramos la referencia StoryBoard Name que está en:
+
+    Application Scene Manifest/Scene Configuration/Application Session Role/Item 0/Storyboard Name
+
+ - Nos vamos a el SceneDelegate y modificamos la función scene (la primera):
+
+ func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+     guard let windowScene = (scene as? UIWindowScene) else { return }
+     let viewController = ViewController() // <===== Aquí cambiamos la clase del viewController inicial
+     viewController.title = "mvc sin storyBoard"
+     let navigationController = UINavigationController(rootViewController: viewController)
+     self.window = UIWindow(windowScene: windowScene) // Asignamos a la window actual la escena
+     self.window?.rootViewController = navigationController // Asignamos como rootViewController la instancia del ViewController que queremos mostrar
+     //self.window?.rootViewController = viewController // ¿si no NavigationController? le asignariamos a rootViewController el ViewController deseado
+     self.window?.makeKeyAndVisible() // Sirve para hacer la window visible
+ }
+
+model:
+- Realiza conexión a la Api (https://rickandmortyapi.com/api/character)
+- Parsea el modelo de nuestro dominio
+
+View:
+- Creamos las vistas necesarias por cada controlador
+
+Controller:
+- Vamos a crear dos propiedades. Una será una referencia a la vista y otra al modelo
+- Una será la mainView, que será una instancia de CharacterListView
+- La otra será una instancia de ApiClient para poder realizar peticiones http.
+
+
+Coordinators:
+
+- Los coordinators son un patrón de diseño de software que se utiliza para separar la lógica de navegación de una aplicación
+  de la lógica de presentación de la interfaz de usuario. En Swift, puedes utilizar coordinators para manejar la navegación
+  entre vistas en una aplicación iOS. Al separar la lógica de navegación de la lógica de presentación, puedes hacer que tu
+  código sea más fácil de entender y mantener. Además, los coordinators te permiten implementar la navegación de forma
+  más flexible y reutilizable, lo que puede ser útil en aplicaciones más grandes y complejas. ¿Te gustaría que profundizara
+  más sobre el uso de coordinators en Swift?
+
+- Ventajas:
+    - Desacople de lógica
+    - Poder reutilizar navegaciones en otras partes de tu aplicación
+    - Crear múltiples navegacines tanto push o modal
